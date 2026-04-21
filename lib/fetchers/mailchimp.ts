@@ -35,8 +35,8 @@ export async function fetchMailchimp(startDate: string, endDate: string): Promis
 
     const listRes = await mailchimp.campaigns.list({
       status: "sent",
-      since_send_time: sinceTime,
-      before_send_time: beforeTime,
+      sinceSendTime: sinceTime,
+      beforeSendTime: beforeTime,
       count: 100,
       fields: ["campaigns.id", "campaigns.settings.title", "campaigns.settings.subject_line", "campaigns.send_time", "campaigns.recipients"],
     }) as { campaigns: { id: string; settings: { title: string; subject_line: string }; send_time: string; recipients: { recipient_count: number } }[] };
