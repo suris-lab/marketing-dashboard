@@ -3,6 +3,12 @@ import { fetchMeta } from "@/lib/fetchers/meta";
 import { fetchLinkedIn } from "@/lib/fetchers/linkedin";
 import { fetchMailchimp } from "@/lib/fetchers/mailchimp";
 import { fetchGa4 } from "@/lib/fetchers/ga4";
+import type { MetaPlatformSummary, LinkedInSummary, EdmSummary, WebsiteSummary } from "@/lib/types";
+
+const EMPTY_META: MetaPlatformSummary = { impressions: 0, reach: 0, engagement: 0, clicks: 0, spend: 0, ctr: 0, cpc: 0, cpm: 0, leads: 0 };
+const EMPTY_LI: LinkedInSummary = { impressions: 0, clicks: 0, engagement: 0, spend: 0, ctr: 0, cpc: 0, leads: 0 };
+const EMPTY_EDM: EdmSummary = { total_campaigns: 0, total_sent: 0, avg_open_rate: 0, avg_click_rate: 0, avg_ctor: 0, leads: 0 };
+const EMPTY_WEB: WebsiteSummary = { total_sessions: 0, total_users: 0, new_users: 0, avg_bounce_rate: 0, avg_session_duration: 0, total_conversions: 0, conversion_rate: 0 };
 
 function defaultDates() {
   const end = new Date();
@@ -43,11 +49,11 @@ export async function GET(req: NextRequest) {
   if (websiteData) result.website = websiteData;
 
   // Build overview summary
-  const fb = metaData?.summary?.facebook ?? {};
-  const ig = metaData?.summary?.instagram ?? {};
-  const li = linkedinData?.summary ?? {};
-  const edm = edmData?.summary ?? {};
-  const web = websiteData?.summary ?? {};
+  const fb = metaData?.summary?.facebook ?? EMPTY_META;
+  const ig = metaData?.summary?.instagram ?? EMPTY_META;
+  const li = linkedinData?.summary ?? EMPTY_LI;
+  const edm = edmData?.summary ?? EMPTY_EDM;
+  const web = websiteData?.summary ?? EMPTY_WEB;
 
   const totalSpend =
     (fb.spend ?? 0) + (ig.spend ?? 0) + (li.spend ?? 0);
