@@ -38,7 +38,7 @@ export async function fetchMailchimp(startDate: string, endDate: string): Promis
       since_send_time: sinceTime,
       before_send_time: beforeTime,
       count: 100,
-      fields: ["campaigns.id", "campaigns.settings.title", "campaigns.settings.subject_line", "campaigns.send_time", "campaigns.recipients"].join(","),
+      fields: ["campaigns.id", "campaigns.settings.title", "campaigns.settings.subject_line", "campaigns.send_time", "campaigns.recipients"],
     }) as { campaigns: { id: string; settings: { title: string; subject_line: string }; send_time: string; recipients: { recipient_count: number } }[] };
 
     const campaigns: Campaign[] = await Promise.all(
