@@ -73,12 +73,14 @@ export async function fetchMailchimp(startDate: string, endDate: string): Promis
       })
     );
 
-    const weekly = campaigns.filter((c) => c.category === "weekly");
-    const member_notice = campaigns.filter((c) => c.category === "member_notice");
-    const standalone = campaigns.filter((c) => c.category === "standalone");
+    const sent = campaigns.filter((c) => c.unique_opens > 0 || c.unique_clicks > 0);
 
-    const count = campaigns.length;
-    const total_sent = campaigns.reduce((s, c) => s + c.emails_sent, 0);
+    const weekly = sent.filter((c) => c.category === "weekly");
+    const member_notice = sent.filter((c) => c.category === "member_notice");
+    const standalone = sent.filter((c) => c.category === "standalone");
+
+    const count = sent.length;
+    const total_sent = sent.reduce((s, c) => s + c.emails_sent, 0);
 
     return {
       platform: "edm",
@@ -86,12 +88,12 @@ export async function fetchMailchimp(startDate: string, endDate: string): Promis
       summary: {
         total_campaigns: count,
         total_sent,
-        avg_open_rate: count ? Math.round(campaigns.reduce((s, c) => s + c.open_rate, 0) / count * 10) / 10 : 0,
-        avg_click_rate: count ? Math.round(campaigns.reduce((s, c) => s + c.click_rate, 0) / count * 10) / 10 : 0,
-        avg_ctor: count ? Math.round(campaigns.reduce((s, c) => s + c.ctor, 0) / count * 10) / 10 : 0,
+        avg_open_rate: count ? Math.round(sent.reduce((s, c) => s + c.open_rate, 0) / count * 10) / 10 : 0,
+        avg_click_rate: count ? Math.round(sent.reduce((s, c) => s + c.click_rate, 0) / count * 10) / 10 : 0,
+        avg_ctor: count ? Math.round(sent.reduce((s, c) => s + c.ctor, 0) / count * 10) / 10 : 0,
         leads: Math.floor(total_sent * 0.005),
       },
-      campaigns,
+      campaigns: sent,
       categories: {
         weekly: categorySummary(weekly),
         member_notice: categorySummary(member_notice),
