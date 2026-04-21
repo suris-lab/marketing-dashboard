@@ -27,7 +27,8 @@ export async function fetchMailchimp(startDate: string, endDate: string): Promis
   if (!apiKey || !serverPrefix) return mockMailchimp(startDate, endDate);
 
   try {
-    const mailchimp = (await import("@mailchimp/mailchimp_marketing")).default;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const mailchimp = (await import("@mailchimp/mailchimp_marketing")).default as any;
     mailchimp.setConfig({ apiKey, server: serverPrefix });
 
     const sinceTime = `${startDate}T00:00:00+00:00`;
@@ -39,7 +40,7 @@ export async function fetchMailchimp(startDate: string, endDate: string): Promis
       beforeSendTime: beforeTime,
       count: 100,
       fields: ["campaigns.id", "campaigns.settings.title", "campaigns.settings.subject_line", "campaigns.send_time", "campaigns.recipients"],
-    }) as { campaigns: { id: string; settings: { title: string; subject_line: string }; send_time: string; recipients: { recipient_count: number } }[] };
+    }) as { campaigns: { id: string; settings: { title: string; subject_line: string }; send_time: string; recipients: { recipient_count: number } }[] | undefined };
 
     const campaigns: Campaign[] = await Promise.all(
       (listRes.campaigns ?? []).map(async (c) => {
