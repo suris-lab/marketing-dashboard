@@ -3,9 +3,10 @@ import { deleteAsset } from "@/lib/assets";
 
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const deleted = await deleteAsset(params.id);
-  if (deleted) return NextResponse.json({ deleted: params.id });
+  const { id } = await params;
+  const deleted = await deleteAsset(id);
+  if (deleted) return NextResponse.json({ deleted: id });
   return NextResponse.json({ error: "Asset not found" }, { status: 404 });
 }
