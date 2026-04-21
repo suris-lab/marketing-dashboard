@@ -20,7 +20,7 @@ export function WebsiteSection({ data }: Props) {
     <div>
       <SectionHeader title="Website Analytics" subtitle="Google Analytics 4 — all properties combined" isMock={data.is_mock} />
 
-      <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <KpiCard label="Sessions"     value={s.total_sessions.toLocaleString()}    accent="blue" />
         <KpiCard label="Users"        value={s.total_users.toLocaleString()}       accent="purple" />
         <KpiCard label="New Users"    value={s.new_users.toLocaleString()}         accent="teal" />

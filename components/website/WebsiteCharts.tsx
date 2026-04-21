@@ -19,7 +19,7 @@ export function WebsiteCharts({ daily, trafficSources }: Props) {
   }));
 
   return (
-    <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
       <div className="col-span-2 rounded-xl border border-gray-800 bg-gray-900 p-5">
         <p className="mb-4 text-sm font-medium text-gray-400">Daily Sessions & Users</p>
         <ResponsiveContainer width="100%" height={280}>

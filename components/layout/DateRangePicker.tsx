@@ -22,7 +22,7 @@ export function DateRangePicker({ start, end, onChange }: DateRangePickerProps) 
   const today = new Date().toISOString().slice(0, 10);
 
   return (
-    <div className="flex items-center gap-3 flex-wrap">
+    <div className="flex flex-wrap items-center gap-2">
       {PRESETS.map((p) => (
         <button
           key={p.days}

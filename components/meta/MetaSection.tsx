@@ -41,7 +41,7 @@ export function MetaSection({ data }: Props) {
         ))}
       </div>
 
-      <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <KpiCard label="Impressions" value={s.impressions.toLocaleString()} accent="blue" />
         <KpiCard label="Reach"       value={s.reach.toLocaleString()}       accent="purple" />
         <KpiCard label="Engagement"  value={s.engagement.toLocaleString()}  accent="teal" />

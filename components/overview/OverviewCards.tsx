@@ -13,7 +13,7 @@ interface Props {
 
 export function OverviewCards({ data }: Props) {
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
       <KpiCard label="Total Impressions" value={fmt(data.total_impressions)} accent="blue" />
       <KpiCard label="Total Reach"       value={fmt(data.total_reach)}       accent="purple" />
       <KpiCard label="Engagement"        value={fmt(data.total_engagement)}   accent="teal" />

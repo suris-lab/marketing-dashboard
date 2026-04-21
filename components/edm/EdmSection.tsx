@@ -33,7 +33,7 @@ export function EdmSection({ data }: Props) {
     <div>
       <SectionHeader title="EDM / Email Campaigns" subtitle="Mailchimp campaign analytics" isMock={data.is_mock} />
 
-      <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <KpiCard label="Campaigns"    value={s.total_campaigns}     accent="blue" />
         <KpiCard label="Total Sent"   value={s.total_sent.toLocaleString()} accent="purple" />
         <KpiCard label="Avg Open Rate" value={`${s.avg_open_rate}%`} accent="green" />
@@ -66,7 +66,7 @@ export function EdmSection({ data }: Props) {
 
       {/* Category summary if filtered */}
       {catData && catData.count > 0 && (
-        <div className="mb-5 grid grid-cols-3 gap-4 sm:grid-cols-5">
+        <div className="mb-5 grid grid-cols-2 gap-3 sm:grid-cols-5">
           <KpiCard label="Campaigns"    value={catData.count}                     accent="blue" />
           <KpiCard label="Total Sent"   value={catData.total_sent.toLocaleString()} accent="purple" />
           <KpiCard label="Avg Open"     value={`${catData.avg_open_rate}%`}       accent="green" />

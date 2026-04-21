@@ -39,7 +39,8 @@ export default function DashboardPage() {
           onDateChange={(start, end) => setDates({ start, end })}
         />
 
-        <main className="flex-1 overflow-y-auto p-6">
+        {/* pb-20 reserves space for mobile bottom tab bar */}
+        <main className="flex-1 overflow-y-auto p-4 pb-24 md:p-6 md:pb-6">
           {isLoading && (
             <div className="flex h-48 items-center justify-center">
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />

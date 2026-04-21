@@ -41,7 +41,7 @@ export function AssetsSection() {
           <p className="text-sm text-gray-500">No assets yet. Add your first digital asset above.</p>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {assets.map((a) => (
             <AssetCard key={a.id} asset={a} onDelete={removeAsset} />
           ))}

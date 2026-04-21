@@ -12,7 +12,7 @@ export function OverviewSection({ data }: Props) {
       <SectionHeader title="Campaign Overview" subtitle={`${data.date_range.start} → ${data.date_range.end}`} />
       <OverviewCards data={data} />
 
-      <div className="mt-6 grid grid-cols-3 gap-4">
+      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <div className="rounded-xl border border-gray-800 bg-gray-900 p-5">
           <p className="text-xs uppercase tracking-wider text-gray-400">Website Sessions</p>
           <p className="mt-2 text-2xl font-bold text-blue-400">{data.website_sessions.toLocaleString()}</p>

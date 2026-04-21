@@ -13,7 +13,7 @@ export function LinkedInSection({ data }: Props) {
     <div>
       <SectionHeader title="LinkedIn" subtitle="Organic & paid analytics" isMock={data.is_mock} />
 
-      <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <KpiCard label="Impressions" value={s.impressions.toLocaleString()} accent="blue" />
         <KpiCard label="Clicks"      value={s.clicks.toLocaleString()}      accent="green" />
         <KpiCard label="Engagement"  value={s.engagement.toLocaleString()}  accent="teal" />
