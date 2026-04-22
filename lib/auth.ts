@@ -13,12 +13,25 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async signIn({ profile }) {
-      // Restrict to specific domain if ALLOWED_EMAIL_DOMAIN is set
-      const domain = process.env.ALLOWED_EMAIL_DOMAIN;
-      if (domain && profile?.email) {
-        return profile.email.endsWith(`@${domain}`);
-      }
-      return true;
+      const email = profile?.email;
+      if (!email) return false;
+
+      // ALLOWED_EMAILS: comma-separated list e.g. "a@gmail.com,b@xxiihk.com"
+      const allowedEmails = process.env.ALLOWED_EMAILS
+        ?.split(",")
+        .map((e) => e.trim().toLowerCase())
+        .filter(Boolean) ?? [];
+
+      // ALLOWED_EMAIL_DOMAIN: e.g. "xxiihk.com"
+      const allowedDomain = process.env.ALLOWED_EMAIL_DOMAIN?.trim().toLowerCase();
+
+      // If neither is set, allow all (open access)
+      if (allowedEmails.length === 0 && !allowedDomain) return true;
+
+      if (allowedEmails.includes(email.toLowerCase())) return true;
+      if (allowedDomain && email.toLowerCase().endsWith(`@${allowedDomain}`)) return true;
+
+      return false;
     },
   },
 };
